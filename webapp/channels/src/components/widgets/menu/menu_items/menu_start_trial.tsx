@@ -48,7 +48,7 @@ const MenuStartTrial = (props: Props): JSX.Element | null => {
 
     // Determine badge text and description based on license type
     const isEntryLicense = isCurrentLicensed === 'true' && skuShortName === LicenseSkus.Entry;
-    const badgeText = isEntryLicense ? 'ENTRY EDITION' : 'TEAM EDITION';
+    const badgeText = isEntryLicense ? 'CODEACE EDITION' : 'CODEACE TEAM EDITION';
 
     return (
         <li
@@ -56,12 +56,11 @@ const MenuStartTrial = (props: Props): JSX.Element | null => {
             role='menuitem'
             id={props.id}
         >
-            <FreeVersionBadge>{badgeText}</FreeVersionBadge>
             <div className='editionText'>
                 {isEntryLicense ? (
                     formatMessage({
                         id: 'navbar_dropdown.entryVersionText',
-                        defaultMessage: 'Entry offers Enterprise Advance capabilities <link>with limits</link> designed to support evaluation.',
+                        defaultMessage: 'CodeAce Entry offers Enterprise Advance capabilities <link>with limits</link> designed to support evaluation.',
                     },
                     {
                         link: (msg: React.ReactNode) => (
@@ -77,7 +76,7 @@ const MenuStartTrial = (props: Props): JSX.Element | null => {
                     formatMessage(
                         {
                             id: 'navbar_dropdown.versionText',
-                            defaultMessage: 'This is the free <link>unsupported</link> edition of Mattermost.',
+                            defaultMessage: 'This is the Team edition of CodeAce.',
                         },
                         {
                             link: (msg: React.ReactNode) => (

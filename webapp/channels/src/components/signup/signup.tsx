@@ -415,7 +415,7 @@ const Signup = ({onCustomizeHeader}: SignupProps) => {
             <p className='signup-body-message-subtitle'>
                 {formatMessage({
                     id: 'signup_user_completed.subtitle',
-                    defaultMessage: 'Create your Mattermost account to start collaborating with your team',
+                    defaultMessage: 'Create your Snack account to start collaborating with your team',
                 })}
             </p>
         );

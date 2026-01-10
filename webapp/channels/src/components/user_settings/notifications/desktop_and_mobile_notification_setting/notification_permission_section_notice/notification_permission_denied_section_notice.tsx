@@ -23,7 +23,7 @@ export default function NotificationPermissionDeniedSectionNotice() {
                 })}
                 text={intl.formatMessage({
                     id: 'user.settings.notifications.desktopAndMobile.notificationSection.permissionDenied.message',
-                    defaultMessage: 'You\'re missing important message and call notifications from Mattermost. To start receiving notifications, please enable notifications for Mattermost in your browser settings.',
+                    defaultMessage: 'You\'re missing important message and call notifications from Snack. To start receiving notifications, please enable notifications for Snack in your browser settings.',
                 })}
                 tertiaryButton={{
                     text: intl.formatMessage({
