@@ -10,7 +10,7 @@ export default function NotificationPermissionDeniedSectionNotice() {
     const intl = useIntl();
 
     const handleClick = useCallback(() => {
-        window.open('https://mattermost.com/pl/manage-notifications', '_blank', 'noopener,noreferrer');
+        // Link disabled
     }, []);
 
     return (
@@ -25,13 +25,7 @@ export default function NotificationPermissionDeniedSectionNotice() {
                     id: 'user.settings.notifications.desktopAndMobile.notificationSection.permissionDenied.message',
                     defaultMessage: 'You\'re missing important message and call notifications from Snack. To start receiving notifications, please enable notifications for Snack in your browser settings.',
                 })}
-                tertiaryButton={{
-                    text: intl.formatMessage({
-                        id: 'user.settings.notifications.desktopAndMobile.notificationSection.permissionDenied.button',
-                        defaultMessage: 'How to enable notifications',
-                    }),
-                    onClick: handleClick,
-                }}
+                tertiaryButton={undefined}
             />
         </div>
     );

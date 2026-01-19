@@ -12,8 +12,10 @@ import ResultModal from './result_modal';
 import './success_modal.scss';
 
 export default function DeleteWorkspaceSuccessModal() {
-    const handleButtonClick = () => {
-        window.open(MattermostLink, '_blank');
+    const handleButtonClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
     };
 
     const title = (
@@ -33,7 +35,7 @@ export default function DeleteWorkspaceSuccessModal() {
     const buttonText = (
         <FormattedMessage
             id='delete_success_modal.button_text'
-            defaultMessage={'Go to mattermost.com'}
+            defaultMessage={'Go to snack.com'}
         />
     );
 

@@ -21,7 +21,22 @@ type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 const ExternalLink = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
     const [href] = useExternalLink(props.href, props.location, props.queryParams);
 
+    // Disable Mattermost external links
+    const isMattermostLink = href && (
+        href.includes('mattermost.com') ||
+        href.includes('docs.mattermost.com') ||
+        href.includes('forum.mattermost.com') ||
+        href.includes('translate.mattermost.com') ||
+        href.includes('academy.mattermost.com') ||
+        href.includes('api.mattermost.com')
+    );
+
     const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+        if (isMattermostLink) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
         if (typeof props.onClick === 'function') {
             props.onClick(e);
         }
@@ -34,7 +49,8 @@ const ExternalLink = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
             target={props.target || '_blank'}
             rel={props.rel || 'noopener noreferrer'}
             onClick={handleClick}
-            href={href}
+            href={isMattermostLink ? '#' : href}
+            style={isMattermostLink ? {pointerEvents: 'none', opacity: 0.6, cursor: 'not-allowed', ...props.style} : props.style}
         >
             {props.children}
         </a>

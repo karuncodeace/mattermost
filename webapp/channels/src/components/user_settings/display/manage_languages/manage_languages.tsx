@@ -253,12 +253,14 @@ export class ManageLanguage extends React.PureComponent<Props, State> {
                         defaultMessage='Would you like to help with translations? Join the <link>Snack Translation Server</link> to contribute.'
                         values={{
                             link: (msg: React.ReactNode) => (
-                                <ExternalLink
-                                    href='http://translate.mattermost.com'
-                                    location='manage_languages'
-                                >
-                                    {msg}
-                                </ExternalLink>
+                                <span style={{display: 'none'}}>
+                                    <ExternalLink
+                                        href='http://translate.mattermost.com'
+                                        location='manage_languages'
+                                    >
+                                        {msg}
+                                    </ExternalLink>
+                                </span>
                             ),
                         }}
                     />

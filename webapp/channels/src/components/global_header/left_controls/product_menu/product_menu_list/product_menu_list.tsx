@@ -220,6 +220,8 @@ const ProductMenuList = (props: Props): JSX.Element | null => {
                     dialogType={AboutBuildModal}
                     text={formatMessage({id: 'navbar_dropdown.about', defaultMessage: 'About {appTitle}'}, {appTitle: siteName})}
                     icon={<InformationOutlineIcon size={18}/>}
+                    disabled={true}
+                    onClick={() => {}}
                 />
             </div>
         </Menu.Group>

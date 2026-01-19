@@ -1,10 +1,9 @@
-@keyframes move {
-    from {
-        opacity: 1;
+@keyframes snack-loading-spin {
+    0% {
+        transform: rotate(0deg);
     }
-
-    to {
-        opacity: 0.1;
+    100% {
+        transform: rotate(360deg);
     }
 }
 
@@ -24,31 +23,34 @@
 
     .loading__content {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 16px;
+
+        .snack-loading-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--button-bg, #7C7CFF);
+
+            svg {
+                width: 40px;
+                height: 40px;
+            }
+
+            &__circle {
+                transform-origin: center;
+                animation: snack-loading-spin 1s linear infinite;
+            }
+        }
 
         p {
-            display: inline-block;
-            margin: 0 0.2em;
+            display: block;
+            margin: 0;
             font-size: 14px;
             font-weight: 500;
-        }
-
-        .round {
-            display: inline-block;
-            width: 4px;
-            height: 4px;
-            border-radius: 10px;
-            margin: 0 2px;
-            animation: move 0.75s infinite linear;
-            background-color: var(--center-channel-color);
-            opacity: 0.1;
-        }
-
-        @for $i from 1 through 3 {
-            .round-#{$i} {
-                animation-delay: 0.2s * $i;
-            }
+            color: var(--center-channel-color);
         }
     }
 

@@ -25,12 +25,30 @@ function LoadingScreen({message, position = 'relative', style, className = '', c
             style={{position, ...style}}
         >
             <div className='loading__content'>
+                <div className='snack-loading-spinner'>
+                    <svg
+                        width='40'
+                        height='40'
+                        viewBox='0 0 40 40'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                    >
+                        <circle
+                            cx='20'
+                            cy='20'
+                            r='18'
+                            stroke='currentColor'
+                            strokeWidth='3'
+                            strokeLinecap='round'
+                            strokeDasharray='113'
+                            strokeDashoffset='28'
+                            className='snack-loading-spinner__circle'
+                        />
+                    </svg>
+                </div>
                 <p>
                     {message || formatMessage({id: 'loading_screen.loading', defaultMessage: 'Loading'})}
                 </p>
-                <div className='round round-1'/>
-                <div className='round round-2'/>
-                <div className='round round-3'/>
             </div>
         </div>
     );

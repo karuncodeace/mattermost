@@ -85,16 +85,9 @@ type Handler struct {
 func generateDevCSP(c Context) string {
 	var devCSP []string
 
-	// Add unsafe-eval to the content security policy for faster source maps in development mode
-	if model.BuildNumber == "dev" {
-		devCSP = append(devCSP, "'unsafe-eval'")
-	}
-
-	// Add unsafe-inline to unlock extensions like React & Redux DevTools in Firefox
-	// see https://github.com/reduxjs/redux-devtools/issues/380
-	if model.BuildNumber == "dev" {
-		devCSP = append(devCSP, "'unsafe-inline'")
-	}
+	// Always add unsafe-eval and unsafe-inline for Snack-branded fork to allow webapp bundle loading
+	devCSP = append(devCSP, "'unsafe-eval'")
+	devCSP = append(devCSP, "'unsafe-inline'")
 
 	// Add supported flags for debugging during development, even if not on a dev build.
 	if *c.App.Config().ServiceSettings.DeveloperFlags != "" {
@@ -115,12 +108,8 @@ func generateDevCSP(c Context) string {
 			// Honour only supported keys
 			switch devFlagKey {
 			case "unsafe-eval", "unsafe-inline":
-				if model.BuildNumber == "dev" {
-					// These flags are added automatically for dev builds
-					continue
-				}
-
-				devCSP = append(devCSP, "'"+devFlagKey+"'")
+				// These are already added automatically for Snack-branded fork
+				continue
 			default:
 				c.Logger.Warn("Unrecognized developer flag", mlog.String("developer_flag", devFlagKVStr))
 			}
@@ -237,8 +226,9 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		devCSP := generateDevCSP(*c)
 
 		// Set content security policy. This is also specified in the root.html of the webapp in a meta tag.
+		// Include data: and blob: sources for images and other resources
 		w.Header().Set("Content-Security-Policy", fmt.Sprintf(
-			"frame-ancestors 'self' %s; script-src 'self'%s%s",
+			"frame-ancestors 'self' %s; script-src 'self'%s%s; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' data:; font-src 'self' data:; connect-src 'self' data: blob:;",
 			*c.App.Config().ServiceSettings.FrameAncestors,
 			h.cspShaDirective,
 			devCSP,

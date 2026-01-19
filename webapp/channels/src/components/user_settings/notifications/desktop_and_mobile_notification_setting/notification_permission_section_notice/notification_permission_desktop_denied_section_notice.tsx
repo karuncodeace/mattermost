@@ -25,7 +25,7 @@ export default function NotificationPermissionDesktopDeniedSectionNotice(props: 
     }
 
     const handleInstructionButtonClick = useCallback(() => {
-        window.open('https://mattermost.com/pl/manage-notifications', '_blank', 'noopener,noreferrer');
+        // Link disabled
     }, []);
 
     const title = checkedPermissionDenied ? intl.formatMessage({
@@ -58,13 +58,7 @@ export default function NotificationPermissionDesktopDeniedSectionNotice(props: 
                     onClick: handleCheckPermissionButtonClick,
                     disabled: checkedPermissionDenied,
                 }}
-                tertiaryButton={{
-                    text: intl.formatMessage({
-                        id: 'user.settings.notifications.desktopAndMobile.notificationSection.permissionDenied.instructionButton',
-                        defaultMessage: 'How to enable notifications',
-                    }),
-                    onClick: handleInstructionButtonClick,
-                }}
+                tertiaryButton={undefined}
             />
         </div>
     );

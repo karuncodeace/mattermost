@@ -353,7 +353,7 @@ const Signup = ({onCustomizeHeader}: SignupProps) => {
                 id: 'signup.title',
                 defaultMessage: 'Create Account | {siteName}',
             },
-            {siteName: SiteName || 'Mattermost'},
+            {siteName: SiteName || 'Snack'},
         );
     }, [formatMessage, SiteName]);
 
@@ -615,7 +615,7 @@ const Signup = ({onCustomizeHeader}: SignupProps) => {
                     onChange={() => setSubscribeToSecurityNewsletter(!subscribeToSecurityNewsletter)}
                     text={
                         formatMessage(
-                            {id: 'newsletter_optin.checkmark.text', defaultMessage: '<span>I would like to receive Mattermost security updates via newsletter.</span> By subscribing, I consent to receive emails from Mattermost with product updates, promotions, and company news. I have read the <a>Privacy Policy</a> and understand that I can <aa>unsubscribe</aa> at any time'},
+                            {id: 'newsletter_optin.checkmark.text', defaultMessage: '<span>I would like to receive Snack security updates via newsletter.</span> By subscribing, I consent to receive emails from Snack with product updates, promotions, and company news. I have read the <a>Privacy Policy</a> and understand that I can <aa>unsubscribe</aa> at any time'},
                             {
                                 a: (chunks: React.ReactNode | React.ReactNodeArray) => (
                                     <ExternalLink
@@ -645,7 +645,7 @@ const Signup = ({onCustomizeHeader}: SignupProps) => {
         return (
             <div className='newsletter'>
                 <span className='interested'>
-                    {formatMessage({id: 'newsletter_optin.title', defaultMessage: 'Interested in receiving Mattermost security, product, promotions, and company updates updates via newsletter?'})}
+                    {formatMessage({id: 'newsletter_optin.title', defaultMessage: 'Interested in receiving Snack security, product, promotions, and company updates updates via newsletter?'})}
                 </span>
                 <span className='link'>
                     {formatMessage(

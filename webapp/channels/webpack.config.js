@@ -306,14 +306,9 @@ var config = {
 };
 
 function generateCSP() {
-    let csp = 'script-src \'self\' js.stripe.com/v3';
-
-    if (DEV) {
-        // Development source maps require eval
-        csp += ' \'unsafe-eval\'';
-    }
-
-    return csp;
+    // Always include 'unsafe-eval' for Snack build to work properly
+    // Do NOT include frame-ancestors in meta tag (it's ignored and causes warnings)
+    return 'script-src \'self\' \'unsafe-eval\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'; img-src \'self\' data: blob:; font-src \'self\' data:; connect-src \'self\' ws: wss:; object-src \'none\';';
 }
 
 async function initializeModuleFederation() {

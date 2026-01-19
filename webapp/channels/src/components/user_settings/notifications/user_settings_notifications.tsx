@@ -1021,24 +1021,7 @@ class NotificationsTab extends React.PureComponent<Props, State> {
                                 defaultMessage='Notifications'
                             />
                         }
-                        info={
-                            <FormattedMessage
-                                id='user.settings.notifications.learnMore'
-                                defaultMessage='<a>Learn more about notifications</a>'
-                                values={{
-                                    a: (chunks) => ((
-                                        <ExternalLink
-                                            location='user_settings_notifications'
-                                            href='https://mattermost.com/pl/about-notifications'
-                                            className='btn btn-link'
-                                        >
-                                            <LightbulbOutlineIcon className='circular-border'/>
-                                            <span>{chunks}</span>
-                                        </ExternalLink>
-                                    )),
-                                }}
-                            />
-                        }
+                        info={null}
                     />
                     <div className='divider-dark first'/>
                     <DesktopAndMobileNotificationSettings

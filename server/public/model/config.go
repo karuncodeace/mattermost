@@ -470,11 +470,10 @@ func (s *ServiceSettings) SetDefaults(isUpdate bool) {
 	}
 
 	if s.SiteURL == nil {
-		if s.EnableDeveloper != nil && *s.EnableDeveloper {
-			s.SiteURL = NewPointer(ServiceSettingsDefaultSiteURL)
-		} else {
-			s.SiteURL = NewPointer("")
-		}
+		s.SiteURL = NewPointer(ServiceSettingsDefaultSiteURL)
+	} else if s.SiteURL != nil && *s.SiteURL == "" {
+		// Set default SiteURL when empty
+		s.SiteURL = NewPointer(ServiceSettingsDefaultSiteURL)
 	}
 
 	if s.WebsocketURL == nil {

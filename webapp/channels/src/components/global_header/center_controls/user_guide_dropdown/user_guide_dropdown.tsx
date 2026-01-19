@@ -19,6 +19,13 @@ const mattermostUserGuideLink = 'https://docs.mattermost.com/guides/use-mattermo
 const trainingResourcesLink = 'https://academy.mattermost.com/';
 const askTheCommunityUrl = 'https://mattermost.com/pl/default-ask-mattermost-community/';
 
+// Disable external Mattermost links
+const handleDisabledLink = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+};
+
 type Props = WrappedComponentProps & PropsFromRedux;
 
 type State = {
@@ -67,27 +74,37 @@ class UserGuideDropdown extends React.PureComponent<Props, State> {
 
         return (
             <Menu.Group>
-                <Menu.ItemExternalLink
-                    id='mattermostUserGuideLink'
-                    iconClassName='icon-file-text-outline'
-                    url={mattermostUserGuideLink}
-                    text={intl.formatMessage({id: 'userGuideHelp.mattermostUserGuide', defaultMessage: 'Mattermost user guide'})}
-                />
-                {this.props.helpLink && (
-                    <Menu.ItemExternalLink
-                        id='trainingResourcesLink'
-                        iconClassName='icon-lightbulb-outline'
-                        url={trainingResourcesLink}
-                        text={intl.formatMessage({id: 'userGuideHelp.trainingResources', defaultMessage: 'Training resources'})}
-                    />
-                )}
-                {this.props.enableAskCommunityLink === 'true' && (
-                    <Menu.ItemExternalLink
-                        id='askTheCommunityLink'
-                        iconClassName='icon-help'
-                        url={askTheCommunityUrl}
-                        text={intl.formatMessage({id: 'userGuideHelp.askTheCommunity', defaultMessage: 'Ask the community'})}
-                    />
+                {false && (
+                    <>
+                        <Menu.ItemExternalLink
+                            id='mattermostUserGuideLink'
+                            iconClassName='icon-file-text-outline'
+                            url={mattermostUserGuideLink}
+                            text={intl.formatMessage({id: 'userGuideHelp.mattermostUserGuide', defaultMessage: 'Snack user guide'})}
+                            onClick={handleDisabledLink}
+                            style={{pointerEvents: 'none', opacity: 0.6, cursor: 'not-allowed'}}
+                        />
+                        {this.props.helpLink && (
+                            <Menu.ItemExternalLink
+                                id='trainingResourcesLink'
+                                iconClassName='icon-lightbulb-outline'
+                                url={trainingResourcesLink}
+                                text={intl.formatMessage({id: 'userGuideHelp.trainingResources', defaultMessage: 'Training resources'})}
+                                onClick={handleDisabledLink}
+                                style={{pointerEvents: 'none', opacity: 0.6, cursor: 'not-allowed'}}
+                            />
+                        )}
+                        {this.props.enableAskCommunityLink === 'true' && (
+                            <Menu.ItemExternalLink
+                                id='askTheCommunityLink'
+                                iconClassName='icon-help'
+                                url={askTheCommunityUrl}
+                                text={intl.formatMessage({id: 'userGuideHelp.askTheCommunity', defaultMessage: 'Ask the community'})}
+                                onClick={handleDisabledLink}
+                                style={{pointerEvents: 'none', opacity: 0.6, cursor: 'not-allowed'}}
+                            />
+                        )}
+                    </>
                 )}
                 {this.props.reportAProblemLink && (
                     <Menu.ItemExternalLink

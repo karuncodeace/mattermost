@@ -98,20 +98,7 @@ export default function AboutBuildModal(props: Props) {
         />
     );
 
-    let learnMore = (
-        <div>
-            <FormattedMessage
-                id='about.teamEditionLearn'
-                defaultMessage='Join the Snack community at '
-            />
-            <ExternalLink
-                location='about_build_modal'
-                href='https://mattermost.com/community/'
-            >
-                {'mattermost.com/community/'}
-            </ExternalLink>
-        </div>
-    );
+    let learnMore = null;
 
     let licensee;
     if (config.BuildEnterpriseReady === 'true') {
@@ -133,21 +120,7 @@ export default function AboutBuildModal(props: Props) {
             // Show the plan name instead of generic "Enterprise Edition"
             const skuName = getSkuDisplayName(license.SkuShortName || '', license.IsGovSku === 'true');
             title = <>{skuName}</>;
-            learnMore = (
-                <div>
-                    <FormattedMessage
-                        id='about.enterpriseEditionLearn'
-                        defaultMessage='Learn more about Snack {planName} at '
-                        values={{planName: skuName}}
-                    />
-                    <ExternalLink
-                        location='about_build_modal'
-                        href='https://mattermost.com/'
-                    >
-                        {'mattermost.com'}
-                    </ExternalLink>
-                </div>
-            );
+            learnMore = null;
             licensee = (
                 <div className='form-group'>
                     <FormattedMessage
@@ -158,20 +131,7 @@ export default function AboutBuildModal(props: Props) {
                 </div>
             );
         } else {
-            learnMore = (
-                <div>
-                    <FormattedMessage
-                        id='about.enterpriseEditionLearn'
-                        defaultMessage='Learn more about Enterprise Edition at '
-                    />
-                    <ExternalLink
-                        location='about_build_modal'
-                        href='https://mattermost.com/'
-                    >
-                        {'mattermost.com'}
-                    </ExternalLink>
-                </div>
-            );
+            learnMore = null;
         }
     }
 
@@ -361,7 +321,7 @@ export default function AboutBuildModal(props: Props) {
                     </div>
                 </div>
                 <div className='about-modal__footer'>
-                    {learnMore}
+                    {learnMore && learnMore}
                     <div className='form-group'>
                         <div className='about-modal__copyright'>
                             <FormattedMessage
@@ -372,7 +332,7 @@ export default function AboutBuildModal(props: Props) {
                                 }}
                             />
                         </div>
-                        <div className='about-modal__links'>
+                        <div className='about-modal__links' style={{display: 'none'}}>
                             {termsOfService}
                             {' - '}
                             {privacyPolicy}

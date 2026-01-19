@@ -10,7 +10,7 @@ export default function NotificationPermissionUnsupportedSectionNotice() {
     const intl = useIntl();
 
     const handleClick = useCallback(async () => {
-        window.open('https://mattermost.com/pl/pc-web-requirements', '_blank', 'noopener,noreferrer');
+        // Link disabled
     }, []);
 
     return (
@@ -25,13 +25,7 @@ export default function NotificationPermissionUnsupportedSectionNotice() {
                     id: 'user.settings.notifications.desktopAndMobile.notificationSection.permissionUnsupported.message',
                     defaultMessage: 'You\'re missing important message and call notifications from Snack. To start receiving notifications, please update to a supported browser.',
                 })}
-                tertiaryButton={{
-                    text: intl.formatMessage({
-                        id: 'user.settings.notifications.desktopAndMobile.notificationSection.permissionUnsupported.button',
-                        defaultMessage: 'Update your browser',
-                    }),
-                    onClick: handleClick,
-                }}
+                tertiaryButton={undefined}
             />
         </div>
     );

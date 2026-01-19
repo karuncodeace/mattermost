@@ -17,6 +17,7 @@ export default function MattermostLogo(props: React.HTMLAttributes<HTMLSpanEleme
                 enableBackground='new 0 0 500 500'
                 role='img'
                 aria-label={formatMessage({id: 'generic_icons.mattermost', defaultMessage: 'Snack Logo'})}
+                style={{pointerEvents: 'none'}}
             >
                 <g>
                     <g>
